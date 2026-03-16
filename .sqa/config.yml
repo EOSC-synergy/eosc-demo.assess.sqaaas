@@ -1,0 +1,66 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: feature/pynblint
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    github.com/chbrandt/eosc-demo:
+      branch: mickey
+      repo: https://github.com/chbrandt/eosc-demo
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/chbrandt/eosc-demo git:
+        commands:
+        - /usr/bin/env sh .sqa/script.wheezy-wheat-dachsbracke.sh
+        container: qc.acc_lovely-cinnamon-shrimp
+  QC.Doc:
+    repos:
+      github.com/chbrandt/eosc-demo find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.freaky-eggplant-goose.sh
+        container: qc.doc_crabby-puce-newt
+      github.com/chbrandt/eosc-demo git:
+        commands:
+        - /usr/bin/env sh .sqa/script.pasty-myrtle-frigatebird.sh
+        container: qc.doc_smelly-gold-mule
+      github.com/chbrandt/eosc-demo markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.flaky-brass-pinscher.sh
+        container: qc.doc_wheezy-pear-dingo
+  QC.Lic:
+    repos:
+      github.com/chbrandt/eosc-demo licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.sunny-white-boar.sh
+        container: qc.lic_messy-fuchsia-eleuth
+  QC.Met:
+    repos:
+      github.com/chbrandt/eosc-demo cff-converter-python:
+        commands:
+        - /usr/bin/env sh .sqa/script.wimpy-brass-goose.sh
+        container: qc.met_skanky-burgundy-octopus
+  QC.Sty:
+    repos:
+      github.com/chbrandt/eosc-demo checkstyle:
+        commands:
+        - /usr/bin/env sh .sqa/script.beady-aqua-oriole.sh
+        container: qc.sty_zippy-malachite-barnacle
+      github.com/chbrandt/eosc-demo hadolint:
+        commands:
+        - /usr/bin/env sh .sqa/script.chummy-salmon-oriole.sh
+        container: qc.sty_frumpy-salmon-ibis
+      github.com/chbrandt/eosc-demo jsonlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.cranky-cinnamon-woodpecker.sh
+        container: qc.sty_squeaky-viridian-squirrel
+  QC.Ver:
+    repos:
+      github.com/chbrandt/eosc-demo get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.chewy-puce-devil.sh
+        container: qc.ver_sloppy-fuchsia-tzu
+timeout: 5400
